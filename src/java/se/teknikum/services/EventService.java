@@ -20,20 +20,28 @@ import se.teknikum.beans.EventManager;
  */
 @Path("/")
 public class EventService {
-    
+
     @EJB
     EventManager eventManager;
-    
+
     @GET
     @Path("events")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getEvents(){   
-        return Response.ok(eventManager.getEvents()).header("Access-Controll-Allow-Orign","*").build();
+    public Response getEvents() {
+        return Response.ok(eventManager.getEvents()).header("Access-Controll-Allow-Orign", "*").build();
     }
-        @GET
+
+    @GET
     @Path("events/decade/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getEvents(@PathParam("id") int id){   
-        return Response.ok(eventManager.getEventFromDecade(id)).header("Access-Controll-Allow-Orign","*").build();
+    public Response getEvents(@PathParam("id") int id) {
+        return Response.ok(eventManager.getEventFromDecade(id)).header("Access-Controll-Allow-Orign", "*").build();
+    }
+
+    @GET
+    @Path("events/decades/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getDecades() {
+        return Response.ok(eventManager.getDecades()).header("Access-Controll-Allow-Orign", "*").build();
     }
 }
