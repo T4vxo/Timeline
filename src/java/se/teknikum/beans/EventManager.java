@@ -17,7 +17,7 @@ import se.teknikum.utilities.ConnectionFactory;
 
 /**
  *
- * @author DanLun2
+ * @author Daniel Lundberg
  */
 @Stateless
 public class EventManager {
@@ -51,7 +51,7 @@ public class EventManager {
         try {
             Connection connection = ConnectionFactory.getConnection();
             Statement stmt = connection.createStatement();
-            String sql = String.format("SELECT * FROM events WHERE year >= %d AND year <= %d", min, max);
+            String sql = String.format("SELECT * FROM events WHERE year >= %d AND year <= %d ORDER BY year", min, max);
             ResultSet data = stmt.executeQuery(sql);
             JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
             while (data.next()) {
@@ -69,7 +69,6 @@ public class EventManager {
             return null;
         }
     }
-    //SELECT DISTINCT year FROM events ORDER by year
 
     public JsonArray getDecades() {
         try {

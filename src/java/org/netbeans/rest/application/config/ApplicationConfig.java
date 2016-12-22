@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(se.teknikum.services.EventService.class);
+        resources.add(se.teknikum.utilities.CORSFilter.class);
     }
     
 }
